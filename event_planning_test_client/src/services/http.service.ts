@@ -5,6 +5,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
+import { AppToastrService } from './appToastr.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +16,16 @@ export class HttpService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private appToastrService: AppToastrService
+  ) {}
 
   get<T>(path: string, isUserEvent: boolean = true): Observable<T> {
     return this.httpClient.get<T>(this.host + path).pipe(
       tap(() => {
         if (isUserEvent) {
-          console.log('Успешно');
+          this.showSuccessMessage('Успешно');
         }
       }),
       catchError((error) => this.handleServerError(error))
@@ -38,11 +42,15 @@ export class HttpService {
       .pipe(
         tap(() => {
           if (isUserEvent) {
-            console.log('Успешно');
+            this.showSuccessMessage('Успешно');
           }
         }),
         catchError((error) => this.handleServerError(error))
       );
+  }
+
+  private showSuccessMessage(message: string): void {
+    this.appToastrService.showSuccess(message);
   }
 
   private handleServerError(error: HttpErrorResponse) {
