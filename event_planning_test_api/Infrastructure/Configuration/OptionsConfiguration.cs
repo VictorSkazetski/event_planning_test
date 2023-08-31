@@ -13,6 +13,8 @@ public static class OptionsConfiguration
     {
         services.Configure<CorsOptions>(
             configurationManager.GetSection("Cors"));
+        services.Configure<DbOptions>(
+            configurationManager.GetSection("ConnectionStrings"));
 
         return services;
     }

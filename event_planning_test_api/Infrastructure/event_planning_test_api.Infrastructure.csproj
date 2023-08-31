@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\event_planning_test_api.Data\event_planning_test_api.Data.csproj" />
+    <ProjectReference Include="..\event_planning_test_api.Infrastructure.Data\event_planning_test_api.Infrastructure.Data.csproj" />
   </ItemGroup>
 
 </Project>
