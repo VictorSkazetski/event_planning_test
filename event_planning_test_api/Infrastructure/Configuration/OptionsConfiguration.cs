@@ -15,6 +15,8 @@ public static class OptionsConfiguration
             configurationManager.GetSection("Cors"));
         services.Configure<DbOptions>(
             configurationManager.GetSection("ConnectionStrings"));
+        services.Configure<MailClientOptions>(
+            configurationManager.GetSection("MailClient"));
 
         return services;
     }

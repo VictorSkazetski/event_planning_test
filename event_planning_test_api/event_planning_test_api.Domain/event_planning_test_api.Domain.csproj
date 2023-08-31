@@ -7,20 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="MailKit" Version="4.1.0" />
     <PackageReference Include="Mapster" Version="7.3.0" />
-    <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
     <PackageReference Include="MediatR" Version="12.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.10" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\event_planning_test_api.Data\event_planning_test_api.Data.csproj" />
-    <ProjectReference Include="..\event_planning_test_api.Domain\event_planning_test_api.Domain.csproj" />
     <ProjectReference Include="..\event_planning_test_api.Infrastructure.Data\event_planning_test_api.Infrastructure.Data.csproj" />
   </ItemGroup>
 

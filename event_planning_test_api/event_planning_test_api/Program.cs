@@ -7,7 +7,10 @@ builder.Host.ConfigureAppSettings();
 builder.Services.ConfigureOptions(builder.Configuration);
 builder.Services.ConfigureDbContext();
 builder.Services.ConfigureCors();
-builder.Services.AddControllers();
+builder.Services.ConfigureControllers();
+builder.Services.ConfigureIdentity();
+builder.Services.ConfigureMediatR();
+builder.Services.ConfigureServices();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
