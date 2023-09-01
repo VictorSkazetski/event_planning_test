@@ -16,6 +16,10 @@ public class ExceptionMiddleware : IMiddleware
         {
             await HandleConflictException(context, exception);
         }
+        catch (VerifyUserEmailException exception)
+        {
+            await HandleVerifyUserEmailException(context, exception);
+        }
     }
 
     private async Task HandleConflictException(HttpContext httpContext,
@@ -23,6 +27,18 @@ public class ExceptionMiddleware : IMiddleware
     {
         var exception = (ConflictException)ex;
         httpContext.Response.StatusCode = StatusCodes.Status409Conflict;
+        await httpContext.Response.WriteAsJsonAsync(
+            new ExceptionResponse()
+            {
+                Title = exception.Message
+            });
+    }
+
+    private async Task HandleVerifyUserEmailException(HttpContext httpContext,
+        Exception ex)
+    {
+        var exception = (VerifyUserEmailException)ex;
+        httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
         await httpContext.Response.WriteAsJsonAsync(
             new ExceptionResponse()
             {

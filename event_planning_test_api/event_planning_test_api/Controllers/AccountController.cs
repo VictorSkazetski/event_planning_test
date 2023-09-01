@@ -6,7 +6,7 @@ using event_planning_test_api.App.Routes;
 
 namespace event_planning_test_api.Controllers
 {
-    public class AccountController
+    public class AccountController : ControllerBase
     {
         private readonly IMediator Mediator;
 
@@ -23,6 +23,18 @@ namespace event_planning_test_api.Controllers
                 {
                     UserEmail = command.UserEmail,
                     UserPassword = command.UserPassword,
+                });
+        }
+
+        [HttpPost(RouteParts.AccountVerify)]
+        public async Task<UserEmailVerifyDto> VerifyUserEmail(
+            [FromBody] EmailVerifyTokenData command)
+        {
+            return await this.Mediator.Send(
+                new VerifyUserAccountEmailCommand()
+                {
+                    UserEmail = command.UserEmail,
+                    Token = command.Token,
                 });
         }
     }

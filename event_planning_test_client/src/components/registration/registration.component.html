@@ -1,0 +1,64 @@
+<div *ngIf="isRegistrationStep; then registration; else confirmEmail"></div>
+
+<ng-template #registration>
+  <section class="container">
+    <div>
+      <div class="header-form-container">
+        <h1>Регистрация</h1>
+        <div>
+          <a class="close" href="/">&times;</a>
+        </div>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" #pform="ngForm">
+        <input
+          name="uemail"
+          placeholder="Ваш e-mail"
+          formControlName="UserEmail"
+        />
+        <div *ngIf="formControls['UserEmail'].errors?.['email']">
+          Некорректный e-mail
+        </div>
+        <div
+          *ngIf="submitted && formControls['UserEmail'].errors?.['required']"
+        >
+          Укажите e-mail
+        </div>
+        <br />
+        <input
+          name="upassword"
+          placeholder="Придумайте пароль"
+          formControlName="UserPassword"
+        />
+        <div *ngIf="formControls['UserPassword'].errors?.['oneCapitalLetter']">
+          пароль должен содержать хотя бы одну заглавную букву
+        </div>
+        <div *ngIf="formControls['UserPassword'].errors?.['oneLowerLetter']">
+          пароль должен содержать хотя бы одну прописную букву
+        </div>
+        <div *ngIf="formControls['UserPassword'].errors?.['oneNumber']">
+          пароль должен содержать хотя бы одну цифру
+        </div>
+        <div *ngIf="formControls['UserPassword'].errors?.['oneSymbol']">
+          пароль должен содержать хотя бы один символ
+        </div>
+        <div
+          *ngIf="submitted && formControls['UserPassword'].errors?.['required']"
+        >
+          Укажите пароль
+        </div>
+        <div *ngIf="formControls['UserPassword'].errors?.['minlength']">
+          пароль должен не менее 6 символов
+        </div>
+        <br />
+        <div>
+          <button>Зарегистрироваться</button>
+        </div>
+      </form>
+      <a href="/account/login">Войти</a>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #confirmEmail>
+  <email-confirm [emailUrl]="emailUrl"></email-confirm>
+</ng-template>

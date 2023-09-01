@@ -6,6 +6,8 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { AppToastrService } from './appToastr.service';
+import { HttpCodes } from 'src/models/HttpCodes';
+import { CustomHttpErrorResponse } from 'src/models/CustomHttpErrorResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -54,6 +56,18 @@ export class HttpService {
   }
 
   private handleServerError(error: HttpErrorResponse) {
+    if (error.status === HttpCodes.Conflict) {
+      this.appToastrService.showError(
+        (error.error as CustomHttpErrorResponse).title
+      );
+    }
+
+    if (error.status === HttpCodes.BadRequest) {
+      this.appToastrService.showError(
+        (error.error as CustomHttpErrorResponse).title
+      );
+    }
+
     return throwError(() => error);
   }
 }

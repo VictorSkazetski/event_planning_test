@@ -11,9 +11,5 @@ export class AppComponent implements OnInit {
 
   constructor(private httpService: HttpService) {}
 
-  ngOnInit(): void {
-    this.httpService.get('WeatherForecast').subscribe((resp) => {
-      console.log(resp);
-    });
-  }
+  ngOnInit(): void {}
 }

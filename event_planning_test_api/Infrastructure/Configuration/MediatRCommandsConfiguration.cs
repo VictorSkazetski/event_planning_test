@@ -24,6 +24,11 @@ public static class MediatRCommandsConfiguration
                     sp.GetRequiredService<IRegistrationEmail>(),
                     sp.GetRequiredService<IRegistrationEmailMessage>(),
                     sp.GetRequiredService<ICrudBaseRepository<IdentityUserRole<int>, int>>()));
+        services.AddScoped<
+                IRequestHandler<VerifyUserAccountEmailCommand, UserEmailVerifyDto>>(
+                    sp => new VerifyUserAccountEmailCommandHandler(
+                        sp.GetRequiredService<UserManager<UserEntity>>(),
+                         sp.GetRequiredService<IMapper>()));
 
         return services;
     }

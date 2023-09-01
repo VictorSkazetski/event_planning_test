@@ -1,4 +1,5 @@
-﻿using event_planning_test_api.Infrastructure.Configuration;
+﻿using event_planning_test_api.Domain.Middlewares;
+using event_planning_test_api.Infrastructure.Configuration;
 using Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
+app.UseMiddleware<ExceptionMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
