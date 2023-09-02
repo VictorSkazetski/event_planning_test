@@ -21,6 +21,7 @@ public static class ServicesConfiguration
         services.AddScoped<IRegistrationEmail, RegistrationEmailService>();
         services.AddScoped<IRegistrationEmailMessage, RegistrationEmailMessageService>();
         services.AddScoped(typeof(ICrudBaseRepository<,>), typeof(CrudBaseRepository<,>));
+        services.AddScoped<IJWTManager, JWTManagerServices>();
 
         return services;
     }

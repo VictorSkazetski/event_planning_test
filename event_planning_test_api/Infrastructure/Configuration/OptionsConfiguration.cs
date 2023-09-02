@@ -17,6 +17,8 @@ public static class OptionsConfiguration
             configurationManager.GetSection("ConnectionStrings"));
         services.Configure<MailClientOptions>(
             configurationManager.GetSection("MailClient"));
+        services.Configure<JwtOptions>(
+            configurationManager.GetSection("JWT"));
 
         return services;
     }

@@ -3,7 +3,9 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { UserAccount } from 'src/models/UserAccount';
+import { UserToken } from 'src/models/UserToken';
 import { AccountService } from 'src/services/account.service';
+import { LocalStorageService } from 'src/services/localStorage.service';
 
 @Component({
   template: '',
@@ -18,6 +20,7 @@ export abstract class BaseAccountComponent {
     private account: AccountService,
     private route: ActivatedRoute,
     private router: Router,
+    private localStorage: LocalStorageService
   ) {}
 
   get formControls() {
@@ -39,5 +42,22 @@ export abstract class BaseAccountComponent {
 
   close(): void {
     this.router.navigateByUrl('');
+  }
+
+  login(): void {
+    this.account
+      .getUserToken(
+        this.route.snapshot.routeConfig?.path || '',
+        this.form.value
+      )
+      .pipe(filter((userTokens) => userTokens !== null))
+      .subscribe((userToken: UserToken) => {
+        this.localStorage.saveToken('token', userToken);
+        if (this.account.isUserAdmin()) {
+          this.router.navigateByUrl('/admin');
+        } else {
+          this.router.navigateByUrl('/user');
+        }
+      });
   }
 }

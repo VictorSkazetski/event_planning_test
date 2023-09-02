@@ -10,6 +10,7 @@ import {
   RegexPasswordOneSymbolValidator,
 } from 'src/validators/regex.validator';
 import { BaseAccountComponent } from '../account/base-account.component';
+import { LocalStorageService } from 'src/services/localStorage.service';
 
 @Component({
   selector: 'registration',
@@ -21,8 +22,9 @@ export class RegistrationComponent extends BaseAccountComponent {
     account: AccountService,
     route: ActivatedRoute,
     router: Router,
+    localStorage: LocalStorageService
   ) {
-    super(account, route, router);
+    super(account, route, router, localStorage);
   }
 
   ngOnInit() {

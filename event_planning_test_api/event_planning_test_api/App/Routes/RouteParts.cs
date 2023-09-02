@@ -7,4 +7,6 @@ public static class RouteParts
     public const string AccountRegistration = Account + "/" + Registration;
     public const string Verify = "verify";
     public const string AccountVerify = Account + "/" + Verify;
+    public const string Login = "login";
+    public const string Accountlogin = Account + "/" + Login;
 }

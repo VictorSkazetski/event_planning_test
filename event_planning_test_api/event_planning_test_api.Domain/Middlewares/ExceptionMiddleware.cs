@@ -20,6 +20,11 @@ public class ExceptionMiddleware : IMiddleware
         {
             await HandleVerifyUserEmailException(context, exception);
         }
+        catch (UnauthorizedException exception)
+        {
+            await HandleUnauthorizedException(context, exception);
+        }
+
     }
 
     private async Task HandleConflictException(HttpContext httpContext,
@@ -39,6 +44,18 @@ public class ExceptionMiddleware : IMiddleware
     {
         var exception = (VerifyUserEmailException)ex;
         httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+        await httpContext.Response.WriteAsJsonAsync(
+            new ExceptionResponse()
+            {
+                Title = exception.Message
+            });
+    }
+
+    private async Task HandleUnauthorizedException(HttpContext httpContext,
+        Exception ex)
+    {
+        var exception = (UnauthorizedException)ex;
+        httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
         await httpContext.Response.WriteAsJsonAsync(
             new ExceptionResponse()
             {

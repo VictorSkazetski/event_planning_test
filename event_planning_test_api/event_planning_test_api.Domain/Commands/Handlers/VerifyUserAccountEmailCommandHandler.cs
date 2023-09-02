@@ -26,8 +26,8 @@ public class VerifyUserAccountEmailCommandHandler :
             VerifyUserAccountEmailCommand request,
             CancellationToken cancellationToken)
     {
-        var user = await this.userManager.FindByEmailAsync(request.UserEmail);
-        var isEmailVerified = await this.userManager.ConfirmEmailAsync(user, request.Token);
+        var user = await userManager.FindByEmailAsync(request.UserEmail);
+        var isEmailVerified = await userManager.ConfirmEmailAsync(user, request.Token);
         if (isEmailVerified.Succeeded)
         {
             return this.mapper.Map<UserEmailVerifyDto>(user);

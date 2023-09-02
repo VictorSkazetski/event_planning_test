@@ -1,5 +1,6 @@
 ﻿using event_planning_test_api.Data.Dto;
 using event_planning_test_api.Data.Entities;
+using event_planning_test_api.Domain.Commands;
 using Mapster;
 
 namespace event_planning_test_api.Infrastructure.Configuration;
@@ -16,5 +17,8 @@ public static class MapperConfiguration
         config
             .NewConfig<UserEntity, UserEmailVerifyDto>()
             .Map(x => x.UserEmail, x => x.Email);
+        config
+            .NewConfig<UserTokenData, UserTokenDto>()
+            .Map(x => x.AccessToken, x => x.AccessToken);
     }
 }

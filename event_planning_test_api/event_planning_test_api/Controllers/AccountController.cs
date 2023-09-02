@@ -30,11 +30,22 @@ namespace event_planning_test_api.Controllers
         public async Task<UserEmailVerifyDto> VerifyUserEmail(
             [FromBody] EmailVerifyTokenData command)
         {
-            return await this.Mediator.Send(
+            return await Mediator.Send(
                 new VerifyUserAccountEmailCommand()
                 {
                     UserEmail = command.UserEmail,
                     Token = command.Token,
+                });
+        }
+
+        [HttpPost(RouteParts.Accountlogin)]
+        public async Task<UserTokenDto> Login([FromBody] AccountData command)
+        {
+            return await Mediator.Send(
+                new LoginUserAccountCommand() 
+                { 
+                    UserEmail = command.UserEmail,
+                    UserPassword = command.UserPassword,
                 });
         }
     }

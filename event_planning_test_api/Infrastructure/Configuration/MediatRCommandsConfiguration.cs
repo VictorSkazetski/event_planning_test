@@ -28,7 +28,13 @@ public static class MediatRCommandsConfiguration
                 IRequestHandler<VerifyUserAccountEmailCommand, UserEmailVerifyDto>>(
                     sp => new VerifyUserAccountEmailCommandHandler(
                         sp.GetRequiredService<UserManager<UserEntity>>(),
-                         sp.GetRequiredService<IMapper>()));
+                        sp.GetRequiredService<IMapper>()));
+        services.AddScoped<
+                IRequestHandler<LoginUserAccountCommand, UserTokenDto>>(
+                    sp => new LoginUserAccountCommandHandler(
+                        sp.GetRequiredService<UserManager<UserEntity>>(),
+                        sp.GetRequiredService<IMapper>(),
+                        sp.GetRequiredService<IJWTManager>()));
 
         return services;
     }
