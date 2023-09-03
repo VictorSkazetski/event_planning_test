@@ -22,7 +22,7 @@ export class JwtInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     if (this.account.isUserAuth()) {
-      if (request.url.includes('admin')) {
+      if (request.url.includes('admin') || request.url.includes('user')) {
         request = request.clone({
           setHeaders: {
             Authorization: `Bearer ${

@@ -40,6 +40,12 @@ public static class MediatRCommandsConfiguration
                     sp => new CreateEventCommandHandler(
                         sp.GetRequiredService<ICrudBaseRepository<EventsEntity, int>>(),
                         sp.GetRequiredService<IMapper>()));
+        services.AddScoped<
+                IRequestHandler<JoinUserEventCommand, JoinUserEventDto>>(
+                    sp => new JoinUserEventCommandHandler(
+                        sp.GetRequiredService<ICrudBaseRepository<UserJoinEventsEntity, int>>(),
+                        sp.GetRequiredService<IMapper>(),
+                        sp.GetRequiredService<ICurrentUser>()));
 
         return services;
     }

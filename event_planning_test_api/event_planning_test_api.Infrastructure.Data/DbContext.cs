@@ -1,6 +1,7 @@
 ﻿using event_planning_test_api.Data.Entities;
 using event_planning_test_api.Data.Options;
 using event_planning_test_api.Data.Types;
+using event_planning_test_api.Infrastructure.Data.Configurations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -21,8 +22,12 @@ public class DbContext : IdentityDbContext<UserEntity, RolesEnity, int>
 
     public virtual DbSet<EventsEntity> Events { get; set; }
 
+    public virtual DbSet<UserJoinEventsEntity> UserJoinEvents { get; set; }
+    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfiguration(new UserJoinEventsEntityConfiguration());
         base.OnModelCreating(modelBuilder);
         var passwordHash = new PasswordHasher<UserEntity>();
         modelBuilder.Entity<UserEntity>()

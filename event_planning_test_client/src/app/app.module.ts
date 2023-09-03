@@ -25,6 +25,8 @@ import { NgxMatNativeDateModule } from '@angular-material-components/datetime-pi
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { JwtInterceptor } from 'src/interceptors/JwtInterceptor ';
+import { JsonParsePipe } from 'src/pipes/json.pipe';
+import { NgxMatNumberInputSpinnerModule } from 'ngx-mat-number-input-spinner';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { JwtInterceptor } from 'src/interceptors/JwtInterceptor ';
     UserComponent,
     NoAvailableComponent,
     CustomDynamicFormComponent,
+    JsonParsePipe,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { JwtInterceptor } from 'src/interceptors/JwtInterceptor ';
     NgxMatNativeDateModule,
     FormsModule,
     MatFormFieldModule,
+    NgxMatNumberInputSpinnerModule,
   ],
   providers: [
     {

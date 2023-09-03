@@ -24,6 +24,7 @@
     "ang-jsoneditor": "^3.1.0",
     "moment": "^2.29.4",
     "ngx-mask": "^16.3.0",
+    "ngx-mat-number-input-spinner": "^1.2.0",
     "ngx-toastr": "^16.0.2",
     "rxjs": "^7.8.1",
     "tslib": "^2.3.0",

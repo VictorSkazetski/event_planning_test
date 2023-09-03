@@ -23,5 +23,16 @@ public static class MapperConfiguration
         config
             .NewConfig<EventsEntity, EventDto>()
             .Map(x => x.JsonEvent, x => x.JsonEvent);
+        config
+            .NewConfig<EventsEntity, EventsDto>()
+            .Map(x => x.Events, x => x.JsonEvent)
+            .Map(x => x.Id, x => x.Id);
+        config
+            .NewConfig<UserJoinEventsEntity, JoinUserEventDto>()
+            .Map(x => x.UserId, x => x.UserId)
+            .Map(x => x.EventId, x => x.EventId);
+        config
+            .NewConfig<KeyValuePair<int, int>, EventsDto>()
+            .Map(x => x.UserCount, x => x.Value);
     }
 }

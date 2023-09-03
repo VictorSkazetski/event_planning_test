@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using event_planning_test_api.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using event_planning_test_api.Infrastructure.Data;
 namespace event_planning_test_api.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(DbContext))]
-    partial class DbContextModelSnapshot : ModelSnapshot
+    [Migration("20230903180758_addedUserCountColumnToEventsTable")]
+    partial class addedUserCountColumnToEventsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -266,38 +269,17 @@ namespace event_planning_test_api.Infrastructure.Data.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0b8caf2b-7c84-43a4-8566-66380f3ce42d",
+                            ConcurrencyStamp = "7af31bec-c5fc-451b-98c6-e28bd754c704",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHmz+YOhfQnaPn2B/gPUx3958cNJsaJAzp/XfytTnOm7jqedGPnajD2eoKfXnk+czA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMZC8IDVqUKrbKZyqxDOA7pDn8hvtpocAnb/OtKpD+zO5dpjRMJ3b5upqsFvRO/u3Q==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         });
-                });
-
-            modelBuilder.Entity("event_planning_test_api.Data.Entities.UserJoinEventsEntity", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EventId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.HasKey("UserId", "EventId");
-
-                    b.HasIndex("EventId");
-
-                    b.ToTable("UserJoinEvents");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -349,35 +331,6 @@ namespace event_planning_test_api.Infrastructure.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("event_planning_test_api.Data.Entities.UserJoinEventsEntity", b =>
-                {
-                    b.HasOne("event_planning_test_api.Data.Entities.EventsEntity", "Events")
-                        .WithMany("UserJoinEvents")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("event_planning_test_api.Data.Entities.UserEntity", "User")
-                        .WithMany("UserJoinEvents")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Events");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("event_planning_test_api.Data.Entities.EventsEntity", b =>
-                {
-                    b.Navigation("UserJoinEvents");
-                });
-
-            modelBuilder.Entity("event_planning_test_api.Data.Entities.UserEntity", b =>
-                {
-                    b.Navigation("UserJoinEvents");
                 });
 #pragma warning restore 612, 618
         }

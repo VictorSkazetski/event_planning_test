@@ -12,12 +12,12 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace event_planning_test_api.Domain.Services;
 
-public class JWTManagerServices : IJWTManager
+public class JWTManagerService : IJWTManager
 {
     private readonly UserManager<UserEntity> userManager;
     private readonly IOptions<JwtOptions> jwtOptions;
 
-    public JWTManagerServices(
+    public JWTManagerService(
         UserManager<UserEntity> userManager,
         IOptions<JwtOptions> jwtOptions)
     {

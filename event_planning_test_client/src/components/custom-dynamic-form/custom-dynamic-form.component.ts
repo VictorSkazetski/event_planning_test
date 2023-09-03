@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DynamicFormModel } from '@ng-dynamic-forms/core';
 import * as moment from 'moment';
-import { AdminService } from 'src/services/admini.service';
+import { AdminService } from 'src/services/admin.service';
 
 @Component({
   selector: 'custom-dynamic-form',
@@ -13,10 +13,11 @@ import { AdminService } from 'src/services/admini.service';
 export class CustomDynamicFormComponent {
   @Input() form: FormGroup;
   @Input() formModel: DynamicFormModel;
-  date: Date;
+  date: Date | null;
   dateTime: string;
   isDateSelected: boolean;
   @Output() eventCreated = new EventEmitter<boolean>();
+  numberValue: number | null;
 
   constructor(
     private adminService: AdminService,
@@ -24,8 +25,9 @@ export class CustomDynamicFormComponent {
   ) {}
 
   onSubmit(): void {
-    if (this.isDateSelected) {
+    if (this.isDateSelected && (this.numberValue as number) > 0) {
       this.form.addControl('date', new FormControl(this.date?.toString()));
+      this.form.addControl('userCount', new FormControl(this.numberValue));
       this.adminService
         .createEvent(
           this.route.snapshot.routeConfig?.path || '',
@@ -33,10 +35,11 @@ export class CustomDynamicFormComponent {
         )
         .subscribe((event: string) => {
           this.eventCreated.emit(true);
+          this.numberValue = null;
+          this.date = null;
         });
-      console.log(this.form.value);
     } else {
-      alert('Выберети дату!');
+      alert('Не выбрали дату или не установленно кол-во мест!');
     }
   }
 

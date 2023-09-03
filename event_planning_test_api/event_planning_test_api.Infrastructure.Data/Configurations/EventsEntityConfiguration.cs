@@ -12,5 +12,7 @@ public class EventsEntityConfiguration : IEntityTypeConfiguration<EventsEntity>
             .UseIdentityColumn();
         builder.Property(p => p.JsonEvent)
             .HasColumnType("VARCHAR(MAX)");
+        builder.Property(p => p.UserCount)
+            .IsRequired();
     }
 }

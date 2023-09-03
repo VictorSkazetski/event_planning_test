@@ -1,1 +1,26 @@
-<h1>Привет USER</h1>
+<table *ngFor="let table of eventsJson; let indexOfelement = index">
+  <tr>
+    <th>Событие {{ indexOfelement }}</th>
+  </tr>
+  <tr>
+    <th *ngFor="let tableTh of table.events | jsonParse | keyvalue">
+      {{ tableTh.key }}
+    </th>
+  </tr>
+  <tr>
+    <td *ngFor="let tableTd of table.events | jsonParse | keyvalue">
+      {{ tableTd.value }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div *ngIf="table.userCount > 0; else no_seats">
+        <button (click)="joinToEvent(table.id)">Участовать</button>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<ng-template #no_seats>
+  <h2>Нет мест</h2>
+</ng-template>

@@ -14,7 +14,7 @@ import { LocalStorageService } from 'src/services/localStorage.service';
 export abstract class BaseAccountComponent {
   protected form: FormGroup;
   protected submitted: boolean;
-  isRegistrationStep: boolean;
+  isRegistrationStep: boolean = true;
   @Output() emailUrl: string;
 
   constructor(

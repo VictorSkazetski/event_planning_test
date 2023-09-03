@@ -5,4 +5,8 @@ public class EventsEntity
     public int Id { get; set; }
 
     public string JsonEvent { get; set; }
+
+    public int UserCount { get; set; }
+
+    public List<UserJoinEventsEntity> UserJoinEvents { get; set; }
 }

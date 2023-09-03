@@ -11,6 +11,7 @@ public static class MediatRConfiguration
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         services.AddMediatRCommands();
+        services.AddMediatRQueries();
 
         return services;
     }

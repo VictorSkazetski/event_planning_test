@@ -10,4 +10,5 @@ public static class RouteParts
     public const string Login = "login";
     public const string Accountlogin = Account + "/" + Login;
     public const string Admin = "admin";
+    public const string User = "user";
 }

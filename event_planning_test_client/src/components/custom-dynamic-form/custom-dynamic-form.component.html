@@ -21,6 +21,26 @@
     <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
   </mat-form-field>
   <br />
+  <mat-form-field
+    *ngFor="let appearance of ['legacy']"
+    [appearance]="$any(appearance)"
+  >
+    <mat-label>Classic ({{ appearance }})</mat-label>
+    <input
+      matInput
+      type="number"
+      step="1"
+      min="0"
+      max="10"
+      [ngxMatNumberSpinner]="spinner"
+      [disabled]="false"
+      [readonly]="false"
+      [(ngModel)]="numberValue"
+    />
+
+    <ngx-mat-number-spinner #spinner matSuffix></ngx-mat-number-spinner>
+  </mat-form-field>
+  <br />
   <button type="submit" (click)="documentEditForm.ngSubmit.emit()">
     Сохранить событие
   </button>
