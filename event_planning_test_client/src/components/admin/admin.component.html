@@ -1,1 +1,68 @@
-<h1>Привет ADMIN</h1>
+<div class="admin_container">
+  <div class="table_container">
+    <div class="table_row heading">
+      <div class="row_item">Конфигурация формы</div>
+      <div class="row_item">Пример конфигурации</div>
+    </div>
+    <div class="table_row">
+      <div class="row_item">
+        <json-editor [options]="editorOptions" [data]="data"></json-editor>
+      </div>
+      <div class="row_item">
+        <div>
+          <a href="http://ng2-dynamic-forms.udos86.de/docs/#getting-started"
+            >Документация конфигурации события</a
+          >
+          <textarea disabled name="" id="myTextarea">
+                [
+                    {
+                        "type": "INPUT",
+                        "id": "sampleInput",
+                        "label": "Sample Input",
+                        "maxLength": 42,
+                        "placeholder": "Sample input"
+                    },
+                    {
+                        "type": "RADIO_GROUP",
+                        "id": "sampleRadioGroup",
+                        "label": "Sample Radio Group",
+                        "options": [
+                            {
+                                "label": "Option 1",
+                                "value": "option-1"
+                            },
+                            {
+                                "label": "Option 2",
+                                "value": "option-2"
+                            },
+                            {
+                                "label": "Option 3",
+                                "value": "option-3"
+                            }
+                        ],
+                        "value": "option-3"    
+                    }
+                ]
+            </textarea
+          >
+          <br />
+          <button (click)="createForm()">Создать событие</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="created_form">
+    <div class="created_form__container">
+      <h2>Форма события</h2>
+      <ng-container #containerСustomForm></ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #customForm>
+  <custom-dynamic-form
+    [form]="form"
+    [formModel]="formModel"
+    (eventCreated)="eventCreated($event)"
+  ></custom-dynamic-form>
+</ng-template>

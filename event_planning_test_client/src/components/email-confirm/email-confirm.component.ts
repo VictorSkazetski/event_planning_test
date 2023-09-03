@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./email-confirm.component.css'],
 })
 export class EmailConfirmComponent {
-  @Input() emailUrl: string = '';
+  @Input() emailUrl: string;
 
   constructor() {}
 }

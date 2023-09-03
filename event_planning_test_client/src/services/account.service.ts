@@ -5,6 +5,7 @@ import { VerifyUserEmail } from 'src/models/VerifyUserEmail';
 import { HttpService } from './http.service';
 import { UserToken } from 'src/models/UserToken';
 import { LocalStorageService } from './localStorage.service';
+import { LocalStorage } from 'src/models/LocalStorage';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +32,7 @@ export class AccountService {
   }
 
   isUserAdmin(): boolean {
-    const accessToken = this.localStorage.getToken('token');
+    const accessToken = this.localStorage.getToken(LocalStorage.AccessToken);
     const jwtData = accessToken.accessToken.split('.')[1];
     const decodedJwtData = JSON.parse(window.atob(jwtData));
 
@@ -39,10 +40,6 @@ export class AccountService {
   }
 
   isUserAuth(): boolean {
-    const accessToken = this.localStorage.getToken('token');
-    const jwtData = accessToken.accessToken.split('.')[1];
-    const decodedJwtData = JSON.parse(window.atob(jwtData));
-
-    return decodedJwtData.role === 'Admin';
+    return this.localStorage.isKeyExists(LocalStorage.AccessToken);
   }
 }

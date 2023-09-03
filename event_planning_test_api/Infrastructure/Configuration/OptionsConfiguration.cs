@@ -19,6 +19,8 @@ public static class OptionsConfiguration
             configurationManager.GetSection("MailClient"));
         services.Configure<JwtOptions>(
             configurationManager.GetSection("JWT"));
+        services.Configure<AdminSeedOptions>(
+            configurationManager.GetSection("AdminSeed"));
 
         return services;
     }

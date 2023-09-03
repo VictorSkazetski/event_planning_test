@@ -10,7 +10,7 @@ import { AccountService } from 'src/services/account.service';
   styleUrls: ['./verify-email.component.css'],
 })
 export class VerifyEmailComponent implements OnInit {
-  verifiedUserEmail: string = '';
+  verifiedUserEmail: string;
 
   constructor(private route: ActivatedRoute, private account: AccountService) {}
 

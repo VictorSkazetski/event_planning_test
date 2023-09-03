@@ -2,6 +2,7 @@ import { Component, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { LocalStorage } from 'src/models/LocalStorage';
 import { UserAccount } from 'src/models/UserAccount';
 import { UserToken } from 'src/models/UserToken';
 import { AccountService } from 'src/services/account.service';
@@ -11,10 +12,10 @@ import { LocalStorageService } from 'src/services/localStorage.service';
   template: '',
 })
 export abstract class BaseAccountComponent {
-  protected form: FormGroup = new FormGroup({});
-  protected submitted: boolean = false;
-  isRegistrationStep: boolean = true;
-  @Output() emailUrl: string = '';
+  protected form: FormGroup;
+  protected submitted: boolean;
+  isRegistrationStep: boolean;
+  @Output() emailUrl: string;
 
   constructor(
     private account: AccountService,
@@ -52,7 +53,7 @@ export abstract class BaseAccountComponent {
       )
       .pipe(filter((userTokens) => userTokens !== null))
       .subscribe((userToken: UserToken) => {
-        this.localStorage.saveToken('token', userToken);
+        this.localStorage.saveToken(LocalStorage.AccessToken, userToken);
         if (this.account.isUserAdmin()) {
           this.router.navigateByUrl('/admin');
         } else {

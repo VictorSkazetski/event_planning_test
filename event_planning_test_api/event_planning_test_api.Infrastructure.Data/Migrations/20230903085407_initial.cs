@@ -172,7 +172,7 @@ namespace event_planning_test_api.Infrastructure.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "9d319837-c138-4734-97fd-d6e4225bb71a", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEAhy9fSGedGyOWq3ZI1Z6HFNZch1Z0krXCcvh8+Iw4d07QOGvE7mGbPuycLyIaBqUQ==", null, false, null, false, "admin@admin.com" });
+                values: new object[] { 1, 0, "427c864b-b185-48cf-82e1-948ce489ec3e", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAED7X3kaJH5MTOqpnBn05o5PkSawOCroDWqyuwNCzH7pcC5Ga4RpSxbNAh0OPeWVCXw==", null, false, null, false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

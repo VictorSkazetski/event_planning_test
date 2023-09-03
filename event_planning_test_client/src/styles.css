@@ -1,20 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/ngx-toastr/toastr.css";
 @import url("https://fonts.googleapis.com/css2?family=Agdasima&family=Poppins&display=swap");
+@import "~jsoneditor/dist/jsoneditor.min.css";
 
 body {
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
   background: linear-gradient(to bottom right, #70c1ff, #498ffc);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 a {
   color: red;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.mat-datepicker-toggle .mat-icon-button {
+  background-color: yellow;
+}
+.mat-calendar {
+  background-color: yellow;
+}
+
+.time-container {
+  background-color: yellow;
 }

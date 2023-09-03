@@ -1,17 +1,25 @@
 ﻿using event_planning_test_api.Data.Entities;
+using event_planning_test_api.Data.Options;
 using event_planning_test_api.Data.Types;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace event_planning_test_api.Infrastructure.Data;
 
 public class DbContext : IdentityDbContext<UserEntity, RolesEnity, int>
 {
-    public DbContext(DbContextOptions<DbContext> options)
+    private readonly IOptions<AdminSeedOptions> adminOptions;
+
+    public DbContext(DbContextOptions<DbContext> options,
+        IOptions<AdminSeedOptions> adminOptions)
         : base(options)
     {
+        this.adminOptions = adminOptions;
     }
+
+    public virtual DbSet<EventsEntity> Events { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -27,7 +35,10 @@ public class DbContext : IdentityDbContext<UserEntity, RolesEnity, int>
                     Email = "admin@admin.com",
                     NormalizedEmail = "ADMIN@ADMIN.COM",
                     EmailConfirmed = true,
-                    PasswordHash = passwordHash.HashPassword(null, "123123qweQWE!"),
+                    PasswordHash = passwordHash.HashPassword(
+                        null, 
+                        adminOptions.Value
+                            .Password),
                     PhoneNumberConfirmed = false,
                     TwoFactorEnabled = false,
                     LockoutEnabled = true,

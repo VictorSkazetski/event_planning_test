@@ -23,8 +23,8 @@ public class VerifyUserAccountEmailCommandHandler :
     }
 
     public async Task<UserEmailVerifyDto> Handle(
-            VerifyUserAccountEmailCommand request,
-            CancellationToken cancellationToken)
+        VerifyUserAccountEmailCommand request,
+        CancellationToken cancellationToken)
     {
         var user = await userManager.FindByEmailAsync(request.UserEmail);
         var isEmailVerified = await userManager.ConfirmEmailAsync(user, request.Token);

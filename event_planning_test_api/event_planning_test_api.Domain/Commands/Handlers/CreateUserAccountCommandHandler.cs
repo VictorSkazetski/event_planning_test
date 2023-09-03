@@ -17,20 +17,20 @@ public class CreateUserAccountCommandHandler :
     private readonly IMapper mapper;
     private readonly IRegistrationEmail emailService;
     private readonly IRegistrationEmailMessage registrationMessageService;
-    private readonly ICrudBaseRepository<IdentityUserRole<int>, int> crudBaseRepository;
+    private readonly ICrudBaseRepository<IdentityUserRole<int>, int> identityRepository;
 
     public CreateUserAccountCommandHandler(
         UserManager<UserEntity> userManager,
         IMapper mapper,
         IRegistrationEmail emailService,
         IRegistrationEmailMessage registrationMessageService,
-        ICrudBaseRepository<IdentityUserRole<int>, int> crudBaseRepository)
+        ICrudBaseRepository<IdentityUserRole<int>, int> identityRepository)
     {
         this.userManager = userManager;
         this.mapper = mapper;
         this.emailService = emailService;
         this.registrationMessageService = registrationMessageService;
-        this.crudBaseRepository = crudBaseRepository;
+        this.identityRepository = identityRepository;
     }
 
     public async Task<AccountDto> Handle(
@@ -52,7 +52,7 @@ public class CreateUserAccountCommandHandler :
             request.UserPassword);
         var userCreated = await userManager.FindByEmailAsync(
             request.UserEmail);
-        await crudBaseRepository.CreateAsync(
+        await identityRepository.CreateAsync(
             new IdentityUserRole<int>
             {
                 RoleId = RolesType.UserRoleId,

@@ -20,5 +20,8 @@ public static class MapperConfiguration
         config
             .NewConfig<UserTokenData, UserTokenDto>()
             .Map(x => x.AccessToken, x => x.AccessToken);
+        config
+            .NewConfig<EventsEntity, EventDto>()
+            .Map(x => x.JsonEvent, x => x.JsonEvent);
     }
 }

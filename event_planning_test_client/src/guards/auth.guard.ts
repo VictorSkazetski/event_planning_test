@@ -13,9 +13,10 @@ export const AuthGuard = (
   state: RouterStateSnapshot
 ): boolean => {
   const localStorage = inject(LocalStorageService);
+  const accountService = inject(AccountService);
   const router = inject(Router);
-  if (localStorage.isKeyExists('token')) {
-    const isUserAdmin = inject(AccountService).isUserAdmin();
+  if (accountService.isUserAuth()) {
+    const isUserAdmin = accountService.isUserAdmin();
     if (route.routeConfig?.path == RolesType.Admin && !isUserAdmin) {
       router.navigateByUrl('/no-available');
 

@@ -24,7 +24,7 @@ export class LoginComponent extends BaseAccountComponent {
     this.buildForm();
   }
 
-  public buildForm() {
+  buildForm() {
     this.form = new FormGroup({
       UserEmail: new FormControl(null),
       UserPassword: new FormControl(null),

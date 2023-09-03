@@ -36,7 +36,7 @@ public class JWTManagerServices : IJWTManager
                 .ToList();
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Expires = DateTime.Now.AddMinutes(3),
+            Expires = DateTime.Now.AddMinutes(30),
             SigningCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(tokenKey),
                 SecurityAlgorithms.HmacSha256Signature)

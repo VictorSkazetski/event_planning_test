@@ -12,7 +12,7 @@ using event_planning_test_api.Infrastructure.Data;
 namespace event_planning_test_api.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(DbContext))]
-    [Migration("20230830125416_initial")]
+    [Migration("20230903085407_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -249,13 +249,13 @@ namespace event_planning_test_api.Infrastructure.Data.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9d319837-c138-4734-97fd-d6e4225bb71a",
+                            ConcurrencyStamp = "427c864b-b185-48cf-82e1-948ce489ec3e",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAhy9fSGedGyOWq3ZI1Z6HFNZch1Z0krXCcvh8+Iw4d07QOGvE7mGbPuycLyIaBqUQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED7X3kaJH5MTOqpnBn05o5PkSawOCroDWqyuwNCzH7pcC5Ga4RpSxbNAh0OPeWVCXw==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"

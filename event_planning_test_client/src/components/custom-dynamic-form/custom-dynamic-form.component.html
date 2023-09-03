@@ -1,0 +1,27 @@
+<div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" #documentEditForm="ngForm">
+    <dynamic-material-form
+      [group]="form"
+      [model]="formModel"
+    ></dynamic-material-form>
+    <br />
+  </form>
+  <mat-form-field>
+    <input
+      matInput
+      [ngxMatDatetimePicker]="picker1"
+      placeholder="Дата события"
+      [ngModel]="date"
+      (ngModelChange)="onDataChange($event)"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="$any(picker1)"
+    ></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
+  </mat-form-field>
+  <br />
+  <button type="submit" (click)="documentEditForm.ngSubmit.emit()">
+    Сохранить событие
+  </button>
+</div>
